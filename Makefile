@@ -1,5 +1,5 @@
 CXX=clang++
-CXX_FLAGS=-std=c++11 -stdlib=libc++ `pkg-config capnp --cflags --libs`
+CXX_FLAGS=-std=c++11 `pkg-config capnp --cflags --libs` -Wl,-rpath,/usr/local/lib
 
 CAPNPC_JAVA_SOURCES=compiler/src/main/cpp/capnpc-java.c++
 
