@@ -318,11 +318,11 @@ private:
       case schema::Value::INT8: return kj::strTree(value.getInt8());
       case schema::Value::INT16: return kj::strTree(value.getInt16());
       case schema::Value::INT32: return kj::strTree(value.getInt32());
-      case schema::Value::INT64: return kj::strTree(value.getInt64(), "ll");
-      case schema::Value::UINT8: return kj::strTree(value.getUint8(), "u");
-      case schema::Value::UINT16: return kj::strTree(value.getUint16(), "u");
-      case schema::Value::UINT32: return kj::strTree(value.getUint32(), "u");
-      case schema::Value::UINT64: return kj::strTree(value.getUint64(), "llu");
+      case schema::Value::INT64: return kj::strTree(value.getInt64(), "L");
+      case schema::Value::UINT8: return kj::strTree(value.getUint8());
+      case schema::Value::UINT16: return kj::strTree(value.getUint16());
+      case schema::Value::UINT32: return kj::strTree(value.getUint32());
+      case schema::Value::UINT64: return kj::strTree(value.getUint64(), "L");
       case schema::Value::FLOAT32: return kj::strTree(value.getFloat32(), "f");
       case schema::Value::FLOAT64: return kj::strTree(value.getFloat64());
       case schema::Value::ENUM: {
@@ -1349,10 +1349,10 @@ private:
       case schema::Value::ENUM:
         return ConstText {
           false,
-          kj::strTree("static constexpr ", typeName_, ' ', upperCase, " = ",
+          kj::strTree("static final ", typeName_, ' ', upperCase, " = ",
               literalValue(constProto.getType(), constProto.getValue()), ";\n"),
           scope.size() == 0 ? kj::strTree() : kj::strTree(
-              "constexpr ", typeName_, ' ', scope, upperCase, ";\n")
+              "final ", typeName_, ' ', scope, upperCase, ";\n")
         };
 
       case schema::Value::TEXT: {
